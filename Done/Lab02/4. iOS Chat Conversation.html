@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-color: rgb(159, 155, 155); 
+        }
+        
+        .hoder {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 5px;
+            flex-direction: row; 
+        }
+
+        .hoder.me {
+            justify-content: flex-end;
+        }
+
+        .content {
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+            max-width: 42%; 
+            padding: 15px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            
+        }
+
+        .hoder.me .content {
+            background-color: rgb(76, 198, 87);
+            color: white;
+            font-size: 18px;
+            transition: background-color 1s;
+        }
+
+        .hoder .content {
+            background-color: rgba(208, 213, 208, 0.883);
+            color : black;
+            font-size: 18px;
+            transition: background-color 1s;
+        }
+
+        .hoder .content:hover {
+            background-color: rgb(159, 161, 159);
+        }
+        
+        .hoder.me .content:hover {
+            background-color: rgb(48, 132, 55); 
+        }
+
+        
+        #chat {
+            border: 1px solid #ccc; 
+            border-radius: 10px; 
+            padding: 10px; 
+            width: calc(100% - 20px); 
+            height: calc(100vh - 20px); 
+            overflow-y: scroll; 
+            box-sizing: border-box; 
+            background-color: white;
+        }
+        
+
+
+
+    </style>
+</head>
+<body>
+    <div id="chat">
+        <div class="hoder">
+            <div class="content">Hello</div>
+        </div>
+        <div class="hoder">
+            <div class="content">I would like for the div to only expand to as wide as my table becomes.
+            </div>
+        </div>
+        <div class="hoder me">
+            <div class="content">Hello</div>
+        </div>
+        <div class="hoder me">
+            <div class="content">when there are no width specified. I heard they think of adding what you want in CSS3. For now, make do with one of the above.
+            </div>
+        </div>
+        <div class="hoder me">
+            <div class="content">Hello</div>
+        </div>
+        <div class="hoder">
+            <div class="content">lement that has what CSS calls shrink-to-fit width and the spec does not provide a blessed way to get such a thing. In CSS2, shrink-to-fit is not a goal, bu</div>
+        </div>
+        <div class="hoder me">
+            <div class="content">Hello</div>
+        </div>
+        <div class="hoder me">
+            <div class="content">Hello</div>
+        </div>
+        <div class="hoder">
+            <div class="content">Hello</div>
+        </div>
+        <div class="hoder me">
+            <div class="content">Hello</div>
+        </div>
+        <div class="hoder me">
+            <div class="content">Hello</div>
+        </div>
+        <div class="hoder">
+            <div class="content">the effect is called "shrinkwrapping", and as answered there's a couple of ways to do this (float, inline, min/max-width) all of which have side-effects to choose from – annakata Jan 16 '09 at 16:32
+            </div>
+        </div>
+        <div class="hoder me">
+            <div class="content">Hello</div>
+        </div>
+        <div class="hoder me">
+            <div class="content">You want a block element that has what CSS calls shrink-to-fit width and the spec does not provide a blessed way to get such a thing. In CSS2, shrink-to-fit is not a goal, but means to deal with a situation where browser "has to" get a width out of thin air. Those situations are:</div>
+        </div>
+        <div class="hoder me">
+            <div class="content">Hello</div>
+        </div>
+        <div class="hoder">
+            <div class="content">Hello</div>
+        </div>
+    </div>
+</body>
+</html>

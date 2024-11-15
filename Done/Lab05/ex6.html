@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Xếp hình</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            transition: background-color 0.1s ease;
+        }
+
+        #board {
+            width: 300px;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(255, 255, 255);
+            border: 0.5px solid black;
+        }
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            transform: matrix(1, 0, 0, 1, 0, 0);
+        }
+
+        .changed {
+            width: 60%;
+        }
+
+        #text-changed {
+            background-color: #d4eddb;
+        }
+
+        #color-rgb {
+            cursor: pointer;
+        }
+
+        #congratsMessage {
+            display: none;
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="puzzle" class="container-fluid"></div>
+<div class="row">
+    <div class="col">
+        <p class="h1 text-center">Xếp hình</p>
+    </div>
+</div>
+
+<div id="congratsMessage" class="row">
+    <div class="col text-center">
+        <p>Congratulations! You have completed the puzzle game.</p>
+    </div>
+</div>
+
+<!-- first -->
+<div class="row">
+    <div class="col d-flex justify-content-center">
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    </div>
+</div>
+
+<!-- second -->
+<div class="row">
+    <div class="col d-flex justify-content-center">
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    </div>
+</div>
+
+<!-- third -->
+<div class="row">
+    <div class="col d-flex justify-content-center">
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    </div>
+</div>
+
+<!-- divided -->
+<div class="row m-3"></div>
+
+<!-- source -->
+<div class="row">
+    <div class="col d-flex justify-content-center">
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img id="drag1" draggable="true" ondragstart="drag(event)" src="./ex6/cntt_01.gif" alt="" />
+        </div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img id="drag2" draggable="true" ondragstart="drag(event)" src="./ex6/cntt_02.gif" alt="" />
+        </div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img id="drag3" draggable="true" ondragstart="drag(event)" src="./ex6/cntt_03.gif" alt="" />
+        </div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img id="drag4" draggable="true" ondragstart="drag(event)" src="./ex6/cntt_04.gif" alt="" />
+        </div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img id="drag5" draggable="true" ondragstart="drag(event)" src="./ex6/cntt_05.gif" alt="" />
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col d-flex justify-content-center">
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img id="drag6" draggable="true" ondragstart="drag(event)" src="./ex6/cntt_06.gif" alt="" />
+        </div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img id="drag7" draggable="true" ondragstart="drag(event)" src="./ex6/cntt_07.gif" alt="" />
+        </div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img id="drag8" draggable="true" ondragstart="drag(event)" src="./ex6/cntt_08.gif" alt="" />
+        </div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img id="drag9" draggable="true" ondragstart="drag(event)" src="./ex6/cntt_09.gif" alt="" />
+        </div>
+        <div class="cell" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img id="drag10" draggable="true" ondragstart="drag(event)" src="./ex6/cntt_10.gif" alt="" />
+        </div>
+    </div>
+</div>
+
+<script>
+    function allowDrop(ev) {
+        let isCell = $(ev.target).attr("class");
+        if (isCell !== undefined) {
+            ev.preventDefault();
+        }
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+
+    function getRotationDegrees(obj) {
+        var matrix =
+            obj.css("-webkit-transform") ||
+            obj.css("-moz-transform") ||
+            obj.css("-ms-transform") ||
+            obj.css("-o-transform") ||
+            obj.css("transform");
+
+        if (matrix !== "none") {
+            var values = matrix.split("(")[1].split(")")[0].split(",");
+            var a = values[0];
+            var b = values[1];
+            var angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+        } else {
+            var angle = 0;
+        }
+
+        return angle;
+    }
+
+    $(document).ready(function () {
+        var correctOrder = ["drag1", "drag2", "drag3", "drag4", "drag5", "drag6", "drag7", "drag8", "drag9", "drag10"];
+
+        function checkPuzzleOrder() {
+            var currentOrder = [];
+            $(".cell img").each(function () {
+                currentOrder.push($(this).attr("id"));
+            });
+            if (JSON.stringify(currentOrder) === JSON.stringify(correctOrder)) {
+                $("#congratsMessage").show();
+            }
+        }
+    
+        $("img").each(function () {
+            let tempDegress = Array(0, 90, 180);
+            let defaultDegress = tempDegress[Math.floor(Math.random() * tempDegress.length)];
+            $(this).css("transform", `rotate(${defaultDegress}deg)`);
+        });
+
+        $("img").click(function () {
+            let currentRotation = getRotationDegrees($(this));
+            $(this).css("transform", `rotate(${(currentRotation + 90) % 360}deg)`);
+        });
+    
+        $(".cell").on("drop", function () {
+            checkPuzzleOrder();
+        });
+    });
+</script>
+</body>
+</html>

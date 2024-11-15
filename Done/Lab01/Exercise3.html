@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+    
+</head>
+<body>
+    <form action="https://web-503073-wiolshzi6q-uc.a.run.app/lab01/register" method="POST">
+        <table>
+            <tr>
+                <td>Your Name</td>
+                <td><input type="text" name="name" placeholder="Enter your name"></td>
+            </tr>
+            
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" placeholder="Enter your email"/required></td>
+            </tr>
+            
+            <tr>
+                <td>Birthday</td>
+                <td><input type="date" name="birthday" /required></td>
+            </tr>
+
+            <tr>
+                <td>Birthtime</td>
+                <td><input type="time" name="birthtime" /></td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td> 
+                    <input type="radio" name="gender" value="Male">Male
+                    <input type="radio" name="gender" value="Female">Female
+                </td>
+            </tr>
+            <tr>
+                <td>From</td>
+                <td>
+                    <select name="country">
+                        <option>Select a country</option>
+                        <optgroup label="Asia">
+                            <option value="0">VietNam</option>
+                            <option value="1">Laos</option>
+                            <option value="2">Cambodia</option>
+                            <option value="3">Singapore</option>
+                        </optgroup>
+                        <optgroup label="Europe">
+                            <option value="4">France</option>
+                            <option value="5">Belgium</option>
+                            <option value="6">Italy</option>
+                            <option value="7">Finland</option>
+                            <option value="8">Ireland</option>
+                        </optgroup>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Favorite IDE</td>
+                <td> 
+                    <div>
+                        <input type="checkbox" name="favorite_ide[]" value="vs-code" checked/>Visual Studio Code
+                    </div>
+                    
+                    <div>
+                        <input type="checkbox" name="favorite_ide[]" value="sublime-text" />Sublime Text
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="favorite_ide[]" value="eclipse" />Eclipse
+                    </div>
+                    
+                    <div>
+                        <input type="checkbox" name="favorite_ide[]" value="atom" checked/>Atom
+                    </div>
+                    
+                    <div>
+                        <input type="checkbox" name="favorite_ide[]" value="intelij-idea" />Intelij Idea
+                    </div>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>TOEIC Score</td>
+                <td><input type="range" min="5" max="990" step="5" name="toeic"></td>
+            </tr>
+
+            <tr>
+                <td>Message</td>
+                <td><textarea name="message" id="" cols="30" rows="10"></textarea></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit">Register</button>
+                    <button type="reset">Again</button>
+                </td>
+                </tr>
+        </table>
+    </form>
+</body>
+</html>

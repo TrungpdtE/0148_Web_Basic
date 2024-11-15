@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        img {
+            max-width: 50px;
+            max-height: 50px;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        #noMatchMessage {
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<input type="text" id="searchBox" placeholder="Search products..." oninput="filterProducts()">
+<table id="productTable">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Table rows will be dynamically added here -->
+    </tbody>
+</table>
+
+<div id="noMatchMessage"></div>
+
+<script>
+    // Sample array of products
+    const products = [
+        { image: 'https://cdn2.cellphones.com.vn/x/media/catalog/product/r/g/rgrg.jpg', name: 'iPhone 15 Pro Max 256GB | Chính hãng VN/A', price: '32,990,000', description: 'iPhone 15 Pro Max thiết kế mới với chất liệu titan chuẩn hàng không vũ trụ bền bỉ, trọng lượng nhẹ, đồng thời trang bị nút Action và cổng sạc USB-C tiêu chuẩn giúp nâng cao tốc độ sạc.' },
+        { image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/a/p/apple_gps_1_.png', name: 'Apple Watch Series 9 41mm (4G) viền nhôm dây cao su', price: '12,790,000', description: 'Apple Watch Series 9 41mm 4G sở hữu khả năng xử lý mượt mà nhờ được trang bị chip S9 SiP mạnh mẽ cùng chất lượng hiển thị sắc nét trên màn hình 1.6 inch.' },
+        { image: 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/o/p/op-lung-magsafe-iphone-15-pro-max-silicone.png', name: 'Ốp lưng iPhone 15 Pro Max Silicone hỗ trợ sạc Magsafe', price: '1,272,000', description: 'Ốp lưng iPhone 15 Pro Max Silicone hỗ trợ sạc Magsafe có kiểu dáng ốp khít với nhiều màu sắc cho người dùng lựa chọn từ hồng, xanh, đen đến trong suốt.' },
+        // Add more products as needed
+    ];
+
+    // Populate the product table
+    function populateProductTable() {
+        const productTable = document.getElementById('productTable').getElementsByTagName('tbody')[0];
+        productTable.innerHTML = '';
+        products.forEach(product => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><img src="${product.image}"></td>
+                <td>${product.name}</td>
+                <td>${product.price}</td>
+                <td>${product.description}</td>
+            `;
+            productTable.appendChild(row);
+        });
+    }
+
+    // Filter products based on the search input
+    function filterProducts() {
+        const searchBox = document.getElementById('searchBox');
+        const searchTerm = searchBox.value.toLowerCase();
+        const filteredProducts = products.filter(product =>
+            product.name.toLowerCase().includes(searchTerm) ||
+            product.price.includes(searchTerm) ||
+            product.description.toLowerCase().includes(searchTerm)
+        );
+
+        const productTable = document.getElementById('productTable').getElementsByTagName('tbody')[0];
+        productTable.innerHTML = '';
+        filteredProducts.forEach(product => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><img src="${product.image}"></td>
+                <td>${product.name}</td>
+                <td>${product.price}</td>
+                <td>${product.description}</td>
+            `;
+            productTable.appendChild(row);
+        });
+
+        const noMatchMessage = document.getElementById('noMatchMessage');
+        if (filteredProducts.length === 0) {
+            noMatchMessage.textContent = 'No matching products found.';
+        } else {
+            noMatchMessage.textContent = '';
+        }
+    }
+
+    // Initial population of the product table
+    populateProductTable();
+</script>
+
+</body>
+</html>

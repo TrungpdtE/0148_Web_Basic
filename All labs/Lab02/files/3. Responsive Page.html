@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- todo: bổ sung viewport ở đây -->
+    <title>Bài tập 3</title>
+    <style>
+        /*
+            Các tỷ lệ kích thước màn hình mẫu:
+               - 1/12: 8.3333%
+               - 2/12: 16.6666%
+               - 3/12: 25%
+               - 4/12: 33.3333%
+               - 5/12: 41.6666%
+               - 6/12: 50%
+               - 7/12: 58.3333%
+               - 8/12: 66.6666%
+               - 9/12: 75%
+               - 10/12: 83.3333%
+               - 11/12: 91.6666%
+               - 12/12: 100%
+        */
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Responsie Website</h1>
+</div>
+
+<div class="content">
+    <!-- thẻ này có col-3 và col-s-4 có nghĩa là: chạy trên màn hình lớn thì width của nó chiếm 3/12 còn màn hình nhỏ thì chiếm 4/12. Màn hình siêu nhỏ thì chiếm 12/12 (có nghĩa là chiếm full dòng luôn vì lúc đó màn hình quá nhỏ, phải lấy tối đa width thì mới đủ không gian để hiển thị.) -->
+    <div class="col-3 col-s-4 menu">
+        <ul>
+            <li>Vietnam</li>
+            <li>Singapore</li>
+            <li>Thailand</li>
+            <li>Indonesia</li>
+        </ul>
+    </div>
+
+    <!-- thẻ này có col-5 và col-s-8 có nghĩa là: chạy trên màn hình lớn thì width của nó chiếm 5/12 còn màn hình nhỏ thì chiếm 8/12. Màn hình siêu nhỏ thì chiếm 12/12 (có nghĩa là chiếm full dòng luôn vì lúc đó màn hình quá nhỏ, phải lấy tối đa width thì mới đủ không gian để hiển thị.) -->
+    <div class="col-5 col-s-8">
+        <h1>Tutorials</h1>
+        <p>To make the layout responsive, using <strong>media query</strong> feature. This feature allows us to set css on different conditions such as: viewport size, rotation direction of screen, type of device running ...</p>
+    </div>
+
+    <!-- thẻ này có col-4 và col-s-12 có nghĩa là: chạy trên màn hình lớn thì width của nó chiếm 4/12 còn màn hình nhỏ thì chiếm 12/12. Màn hình siêu nhỏ thì CŨNG chiếm 12/12 (có nghĩa là chiếm full dòng luôn vì lúc đó màn hình quá nhỏ, phải lấy tối đa width thì mới đủ không gian để hiển thị.) -->
+    <div class="col-4 col-s-12">
+        <div class="aside">
+            <h2>What is Lorem Ipsum?</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <h2>Where does it come from?</h2>
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+            <h2>Why do we use it?</h2>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout..</p>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn.</p>
+</div>
+
+</body>
+</html>

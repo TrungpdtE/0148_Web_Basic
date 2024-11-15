@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- MÁY EM CÓ THẰNG DÙNG PORT 3000 rồi, nên em dùng port 3003 cho nó khác nhau -->
+    <!-- MÁY EM CÓ THẰNG DÙNG PORT 3000 rồi, nên em dùng port 3003 cho nó khác nhau -->
+        <!-- MÁY EM CÓ THẰNG DÙNG PORT 3000 rồi, nên em dùng port 3003 cho nó khác nhau -->
+            <!-- MÁY EM CÓ THẰNG DÙNG PORT 3000 rồi, nên em dùng port 3003 cho nó khác nhau -->
+                <!-- MÁY EM CÓ THẰNG DÙNG PORT 3000 rồi, nên em dùng port 3003 cho nó khác nhau -->
+                    <!-- MÁY EM CÓ THẰNG DÙNG PORT 3000 rồi, nên em dùng port 3003 cho nó khác nhau -->
+                        <!-- MÁY EM CÓ THẰNG DÙNG PORT 3000 rồi, nên em dùng port 3003 cho nó khác nhau -->
+                            <!-- MÁY EM CÓ THẰNG DÙNG PORT 3000 rồi, nên em dùng port 3003 cho nó khác nhau -->
+                                <!-- MÁY EM CÓ THẰNG DÙNG PORT 3000 rồi, nên em dùng port 3003 cho nó khác nhau -->
+                                
+    <title>Fetch Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-3">
+    <h2>Student List</h2>
+        <p>This table displays a list of students downloaded from a back end service via ajax or fetch api</p>
+        <p>Each student has the following information: id, name, age, status (completed, pending). When clicking on the "change" button, the student's status will be changed (and updated on the server side).</p>
+        <p>To set up a back end service, you can install <code>nodejs</code> and use the <code>json-server</code> tool, see more here <a href="https://github.com/typicode/json-server">https://github.com/typicode/json-server</a></p>
+    <div class="w-50">
+        
+        <form action="">
+            <div class="form-group">
+                <label for="fullname">Fullname</label>
+                <input type="text" id="fullname" placeholder="Fullname" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" placeholder="Age" class="form-control" min="18" max="100">
+            </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <select class="form-control" id="state">
+                    <option>Pending</option>
+                    <option>Completed</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button id="btn-add" class="btn btn-primary px-5" >Add</button>
+            </div>
+        </form>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>State</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>John Smith</td>
+                    <td>30</td>
+                    <td><span class="badge badge-warning">Pending</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary">Change</button>
+                        <button class="btn btn-sm btn-outline-danger">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Robert Downey</td>
+                    <td>32</td>
+                    <td><span class="badge badge-success">Confirmed</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary">Change</button>
+                        <button class="btn btn-sm btn-outline-danger">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="error" class="alert alert-danger mt-3" style="display:none">
+            Hiển thị thông báo lỗi ở đây.
+        </div>
+    </div>
+</div>
+<script>
+    const BACKEND_API_URL='http://localhost:3003/students'
+    const btnAdd = document.querySelector('#btn-add')
+    const form = document.querySelector('form')
+    const nameField = document.querySelector('#fullname')
+    const ageField = document.querySelector('#age')
+    const stateField = document.querySelector('#state')
+
+    function fetchStudents(){
+        fetch(BACKEND_API_URL)
+            .then(response => {
+                if(!response.ok) throw new Error('failed to ...')
+
+                return response.json();
+
+
+            })
+            .then(students =>{
+                let tbody=document.querySelector('tbody')
+                students.forEach(student => {
+                    const row=`
+                        <tr>
+                            <td>${student.id}</td>
+                            <td>${student.name}</td>
+                            <td>${student.age}</td>
+                            <td><span class="badge badge-${student.state == 'completed' ? 'success' : 'warning'}">${student.state}</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary">Change</button>
+                                <button class="btn btn-sm btn-outline-danger">Delete</button>
+                            </td>
+                        </tr>
+                    `
+                    tbody.innerHTML+=row
+                            
+                })
+
+            })
+    }
+
+    fetchStudents();
+
+    function addStudent(name, age, state){
+        let data={
+            name,age,state
+        }
+        fetch(BACKEND_API_URL,{
+            method:'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response =>{
+                if(!response.ok) throw new Error('failed')
+
+                return response.json();
+            })
+            .then(jsonObj =>{
+                fetchStudents();
+            })
+    }
+
+    form.addEventListener('submit', e => {
+        
+        e.preventDefault() // stop the form from being submitted
+
+        const name = nameField.value.trim()
+        const age = ageField.value
+        const state = stateField.value
+
+        if (name === '') {
+            nameField.focus()
+            return alert('Please enter student name');
+        }
+        addStudent(name, age, state)
+        
+        alert(name + ' ' + age + ' ' + state)
+    })
+
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+Ghi chú
+   - Hầu hết các phương thức dưới đây nhận tham số là đường dẫn đầy đủ của tập tin
+
+Các hàm xử lý tập tin, thư mục
+   - scandir(): đọc danh sách các tập tin/thư mục con của một thư mục đầu vào.
+   - is_dir(): kiểm tra xem có phải thư mục hay không
+   - is_file(): kiểm tra xem có phải file hay không
+   - file_exists(): kiểm tra xem file tồn tại hay chưa.
+   - is_readable(): kiểm tra xem có quyền đọc hay không
+   - is_writable(): kiểm tra xem có quyền ghi hay không
+   - filesize(): lấy kích thước file (bytes)
+   - filemtime(): trả về lời gian unix time của last modified
+   - mkdir(): tạo thư mục mới
+   - rename(): đổi tên tập tin, thư mục
+   - unlink(): xóa một tập tin
+   - rmdir(): xóa thư mục rỗng. thư mục khác rỗng phải xóa đệ quy
+   - file_put_contents(): ghi nội dung vào tập tin
+   - pathinfo(): lấy thông tin tên tập tin, thư mục, đuôi tập tin 
+	PATHINFO_DIRNAME, PATHINFO_BASENAME, PATHINFO_EXTENSION, PATHINFO_FILENAME
+
+
+Các hàm dùng khi upload tập tin:
+   - move_uploaded_file(): di chuyển tập tin upload từ thư mục temp sang đích đến.
+   - Thông số của tập tin khi upload vào $_FILES:
+	+ name: tên tập tin
+	+ type: mime type của tập tin
+	+ tmp_name: đường dẫn tập tin lưu ở thư mục tạm
+	+ error: mã lỗi upload (nếu có)
+	+ size: kích thước tập tin (byte)

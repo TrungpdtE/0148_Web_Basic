@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- todo: bổ sung viewport ở đây -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bài tập 3</title>
+    <style>
+            /* Add your CSS styles here */
+        /*
+            Các tỷ lệ kích thước màn hình mẫu:
+               - 1/12: 8.3333%
+               - 2/12: 16.6666%
+               - 3/12: 25%
+               - 4/12: 33.3333%
+               - 5/12: 41.6666%
+               - 6/12: 50%
+               - 7/12: 58.3333%
+               - 8/12: 66.6666%
+               - 9/12: 75%
+               - 10/12: 83.3333%
+               - 11/12: 91.6666%
+               - 12/12: 100%
+        */
+        
+            /* Responsive layout */
+
+            .col-3 {
+                width: 25%; /* chiếm 3/12 */
+                float: left;
+            }
+
+            .col-5 {
+                width: 41.6666%; /* chiếm 5/12 */
+                float: left;
+            }
+
+            .col-4 {
+                width: 33.3333%; /* chiếm 4/12 */
+                float: left;
+            }
+
+            .col-3.col-s-4.menu {
+                width: 16.6666%; 
+            }
+
+            /* CSS cho máy tính bảng (tablet) */
+            @media screen and (max-width: 1024px) {
+                .col-3.col-s-4 {
+                    width: 33.3333%; /* chiếm 4/12 */
+                }
+
+                .col-5.col-s-8 {
+                    width: 66.6666%; /* chiếm 8/12 */
+                }
+
+                .col-4.col-s-12 {
+                    width: 100%; /* chiếm 12/12 */
+                }
+            }
+
+            /* CSS cho điện thoại di động (mobile) */
+            @media screen and (max-width: 600px) {
+                
+                .col-3.col-s-4, .col-5.col-s-8, .col-4.col-s-12 {
+                    width: 100%; 
+                    padding: calc(100%-5px);
+                }
+
+                .col-3.col-s-4.menu {
+                    width: 100%;
+                    padding: calc(100%-5px);
+                }
+
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            .col-3 {
+                width: 25%;
+                float: left;
+            }
+
+            .col-5 {
+                width: 41.6666%;
+                float: left;
+            }
+
+            .col-4 {
+                width: 33.3333%;
+                float: right;
+            }
+
+            .col-5, .col-s-8 {
+                display: flex;
+                flex-direction: column;
+                align-items: left;
+                justify-content: center;
+                padding: 10px;
+            }
+
+            .col-5 h1, .col-s-8 h1 {
+                margin-bottom: 20px; 
+            }
+            
+            .col-3, .col-s-4, .menu, .col-5, .col-s-8, .col-4, .col-s-12 {
+                margin: 10px;
+            }
+
+            .content:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            .col-3.col-s-4.menu, .header, .footer {
+                margin-left: 5px;
+            }
+            
+            .col-4.col-s-12, .header, .footer {
+                margin-right: 5px;
+            }
+
+
+            .header {
+                background-color: #1d441d;
+                padding: 20px;
+                text-align: left;
+            }
+
+            .header h1{
+                color: white;
+            }
+
+            .footer {
+                background-color: #f1f1f1;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .menu ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                margin-top: 10px;
+            }
+
+            .menu li {
+                padding: 8px;
+                margin-bottom: 8px;
+                background-color: rgb(89, 91, 103);
+                color: white;
+            }
+
+            .aside {
+                background-color: #f1f1f1;
+                padding: 15px;
+            }
+
+
+            .content .aside{
+                background: rgb(89, 91, 103);
+                color: #fff;
+                margin: 1.858736059%;
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            .footer{
+                background:rgb(89, 91, 103);
+                color: #fff;
+                margin: 1.858736059%;
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            .footer p{
+                color: white;
+            }
+
+            .header:hover{
+                background-color: #163616;
+            }
+
+            .menu ul li:hover {
+                background-color: rgb(70, 70, 70); 
+            }
+            
+            .footer:hover {
+                background-color: rgb(70, 70, 70); 
+            }
+
+
+            .aside:hover {
+                background-color: rgb(70, 70, 70); 
+            }
+
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Responsie Website</h1>
+</div>
+
+<div class="content">
+    <!-- thẻ này có col-3 và col-s-4 có nghĩa là: chạy trên màn hình lớn thì width của nó chiếm 3/12 còn màn hình nhỏ thì chiếm 4/12. Màn hình siêu nhỏ thì chiếm 12/12 (có nghĩa là chiếm full dòng luôn vì lúc đó màn hình quá nhỏ, phải lấy tối đa width thì mới đủ không gian để hiển thị.) -->
+    <div class="col-3 col-s-4 menu">
+        <ul>
+            <li>Vietnam</li>
+            <li>Singapore</li>
+            <li>Thailand</li>
+            <li>Indonesia</li>
+        </ul>
+    </div>
+
+    <!-- thẻ này có col-5 và col-s-8 có nghĩa là: chạy trên màn hình lớn thì width của nó chiếm 5/12 còn màn hình nhỏ thì chiếm 8/12. Màn hình siêu nhỏ thì chiếm 12/12 (có nghĩa là chiếm full dòng luôn vì lúc đó màn hình quá nhỏ, phải lấy tối đa width thì mới đủ không gian để hiển thị.) -->
+    <div class="col-5 col-s-8">
+        <h1>Tutorials</h1>
+        <p>To make the layout responsive, using <strong>media query</strong> feature. This feature allows us to set css on different conditions such as: viewport size, rotation direction of screen, type of device running ...</p>
+    </div>
+
+    <!-- thẻ này có col-4 và col-s-12 có nghĩa là: chạy trên màn hình lớn thì width của nó chiếm 4/12 còn màn hình nhỏ thì chiếm 12/12. Màn hình siêu nhỏ thì CŨNG chiếm 12/12 (có nghĩa là chiếm full dòng luôn vì lúc đó màn hình quá nhỏ, phải lấy tối đa width thì mới đủ không gian để hiển thị.) -->
+    <div class="col-4 col-s-12">
+        <div class="aside">
+            <h2>What is Lorem Ipsum?</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <h2>Where does it come from?</h2>
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+            <h2>Why do we use it?</h2>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout..</p>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn.</p>
+</div>
+
+</body>
+</html>

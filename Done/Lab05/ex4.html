@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .total-info {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Product List</h2>
+<table id="product-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        <!-- Product rows will be dynamically added here -->
+
+    </tbody>
+</table>
+
+<h2>Shopping Cart</h2>
+<table id="cart-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        <!-- Cart rows will be dynamically added here -->
+        
+    </tbody>
+</table>
+
+<div class="total-info">
+    <p style="color: blue;">Total Number of Products: <span id="total-quantity">0</span></p>
+    <p style="color:rgb(175, 5, 5)">Total Price Overall: $<span id="total-price">0.00</span></p>
+</div>
+
+<script>
+// Sample product data
+const products = [
+    { id: 1, name: 'Product 1', price: 10.00, description: 'Description 1' },
+    { id: 2, name: 'Product 2', price: 15.00, description: 'Description 2' },
+    // Add more products as needed
+];
+
+// Initialize cart items
+let cartItems = [];
+
+// Function to add a product to the cart
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    const existingCartItem = cartItems.find(item => item.id === productId);
+
+    if (existingCartItem) {
+        existingCartItem.quantity++;
+    } else {
+        cartItems.push({ id: product.id, name: product.name, price: product.price, quantity: 1 });
+    }
+    
+    updateCart();
+}
+
+// Function to update the cart
+// Function to update the cart
+function updateCart() {
+    const cartTable = document.getElementById("cart-table");
+    const cartBody = cartTable.getElementsByTagName("tbody")[0];
+
+    let totalPrice = 0;
+    let totalQuantity = 0;
+
+    // Clear existing rows
+    cartBody.innerHTML = "";
+
+    // Add or update rows for each cart item
+    cartItems.forEach(item => {
+        const total = item.price * item.quantity;
+        totalPrice += total;
+        totalQuantity += item.quantity;
+
+        const row = cartBody.insertRow();
+        row.innerHTML = `
+            <td>${item.id}</td>
+            <td>${item.name}</td>
+            <td>${item.price.toFixed(2)}</td>
+            <td><input type="number" value="${item.quantity}" onchange="updateQuantity(${item.id}, this.value)"></td>
+            <td>${total.toFixed(2)}</td>
+            <td><button onclick="removeFromCart(${item.id})">Remove</button></td>
+        `;
+    });
+
+    // Update total price and quantity
+    document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+    document.getElementById("total-quantity").textContent = totalQuantity;
+}
+
+
+// Function to update quantity in the cart
+function updateQuantity(productId, newQuantity) {
+    const item = cartItems.find(item => item.id === productId);
+    item.quantity = parseInt(newQuantity);
+    updateCart();
+}
+
+// Function to remove a product from the cart
+function removeFromCart(productId) {
+    cartItems = cartItems.filter(item => item.id !== productId);
+    updateCart();
+}
+
+// Populate product list
+const productTable = document.getElementById("product-table").getElementsByTagName("tbody")[0];
+products.forEach(product => {
+    const row = productTable.insertRow();
+    row.innerHTML = `
+        <td>${product.id}</td>
+        <td>${product.name}</td>
+        <td>${product.price.toFixed(2)}</td>
+        <td>${product.description}</td>
+        <td><button onclick="addToCart(${product.id})">Add to cart</button></td>
+    `;
+});
+
+    
+</script>
+</body>
+</html>

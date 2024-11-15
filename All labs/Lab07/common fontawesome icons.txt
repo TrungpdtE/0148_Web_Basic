@@ -1,0 +1,9 @@
+File chung chung: <i class="fas fa-file"></i>
+File nén: <i class="fas fa-file-archive"></i>
+Folder: <i class="fa fa-folder"></i>
+Ảnh: <i class="fas fa-file-image"></i>
+Nhạc: <i class="fas fa-file-audio"></i>
+Word: <i class="fas fa-file-word"></i>
+Pdf: <i class="fas fa-file-pdf"></i>
+Video: <i class="fas fa-file-video"></i>
+Code: <i class="fas fa-file-code"></i>

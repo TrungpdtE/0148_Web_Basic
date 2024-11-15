@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+
+<!-- trên mac nhớ chạy: macbookpro@TTrung-2 lab6_web_522H0148 % php -S localhost:8080 
+rồi mới chạy được file ex2.html -->
+
+<!-- trên mac nhớ chạy: macbookpro@TTrung-2 lab6_web_522H0148 % php -S localhost:8080 
+rồi mới chạy được file ex2.html -->
+
+<!-- trên mac nhớ chạy: macbookpro@TTrung-2 lab6_web_522H0148 % php -S localhost:8080 
+rồi mới chạy được file ex2.html -->
+
+<!-- trên mac nhớ chạy: macbookpro@TTrung-2 lab6_web_522H0148 % php -S localhost:8080 
+rồi mới chạy được file ex2.html -->
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>PHP Exercises</title>
+    <script>
+        function validateForm() {
+            let num1 = document.querySelector('#num1').value;
+            let num2 = document.querySelector('#num2').value;
+            let operator = document.querySelector('input[name="operator"]:checked');
+            if (num1 == "" || num2 == "" || operator == undefined) {
+                alert("Vui long dien thong tin")
+            } else {
+                operator = operator.value
+
+                let data = {
+                    num1, num2, operator
+                }
+
+                let data_urlencoded = new URLSearchParams(data).toString()
+
+                let url = "http://localhost:8080/ex2-api.php?" + data_urlencoded
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) throw new Error("failed to fetch api")
+
+                        return response.text()
+                    })
+                    .then(text => {
+                        document.querySelector("#show_result").classList.remove("d-none")
+                        document.querySelector(`#show_result div[class="alert alert-success"]`).innerText = `${num1} ${operator} ${num2} = ${text}`
+                    })
+            }
+            return false;
+
+        }
+    </script>
+</head>
+
+<!-- trên mac nhớ chạy: macbookpro@TTrung-2 lab6_web_522H0148 % php -S localhost:8080 
+rồi mới chạy được file ex2.html -->
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6 my-5 mx-auto border rounded px-3 py-3">
+                <h4 class="text-center">Tính toán cơ bản</h4>
+                <form onsubmit="return validateForm()">
+                    <div class="form-group">
+                        <label for="num1">Số hạng 1</label>
+                        <input type="text" class="form-control" id="num1">
+                    </div>
+                    <div class="form-group">
+                        <label for="num2">Số hạng 2</label>
+                        <input type="text" class="form-control" id="num2">
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input id="add" type="radio" class="custom-control-input" name="operator" value="+">
+                            <label for="add" class="custom-control-label">Cộng</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input id="subtract" type="radio" class="custom-control-input" name="operator" value="-">
+                            <label for="subtract" class="custom-control-label">Trừ</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input id="multiply" type="radio" class="custom-control-input" name="operator" value="*">
+                            <label for="multiply" class="custom-control-label">Nhân</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input id="divide" type="radio" class="custom-control-input" name="operator" value="/">
+                            <label for="divide" class="custom-control-label">Chia</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-success">Xem kết quả</button>
+                </form>
+            </div>
+        </div>
+        <div id="show_result" class="row d-none">
+            <div class="col-md-6 mx-auto px-3 py-3 text-center">
+                <div class="alert alert-success"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!-- trên mac nhớ chạy: macbookpro@TTrung-2 lab6_web_522H0148 % php -S localhost:8080 
+rồi mới chạy được file ex2.html -->

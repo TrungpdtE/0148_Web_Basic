@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            body {
+                padding: 40px;
+                background-color: #fff8df;
+            }
+
+            * {box-sizing: border-box;}
+
+            button[type="submit"] {
+                background-color: #dd2c2c;
+            }
+
+            button[type="reset"] {
+                background-color: #e3a73f;
+            }
+
+            .input-error {
+                color: #bc1313;
+                font-size: small;
+            }
+
+            input:hover {
+                background-color: #fff5cf;
+            }
+
+            input:focus {
+                background-color: #f3de8e;
+                border-color: #d97000;
+            }
+
+            .content{
+                border: 1px solid gray;
+                border-radius: 10px;
+                width: 350px;
+                margin: auto;
+                background-color: white;
+                padding: 15px;
+            }
+
+            .form-group{
+                margin-bottom: 10px 0px;
+            }
+
+            .form-control{
+                width: 100%;
+                height: 35px;
+                padding: 15px 0px;
+                border-radius: 5px;
+                border: 1px solid gray;
+            }
+
+            #toeic {
+                width: 100%;
+            }
+
+            button{
+                border: none;
+                color: white;
+                border-radius: 5px;
+            }
+
+
+    </style>
+</head>
+<body>
+    <form method="post" action="http://web-tdtu.herokuapp.com/lab01/register.php">
+        <div class="content">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input class="form-control" id="name" type="text" placeholder="Full Name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input class="form-control" id="email" type="email" placeholder="Email">
+                <div class="input-error">Email address is not valid</div>
+            </div>
+            <div class="form-group">
+                <label for="birthday">Birthday</label>
+                <input class="form-control" id="birthday" type="date">
+            </div>
+            <div class="form-group">
+                <label for="birthtime">Birthtime</label>
+                <input class="form-control" id="birthtime" type="time">
+            </div>
+            <div class="form-group">
+                <label>Gender</label>
+                <div>
+                    <input id="male" type="radio" name="gender">
+                    <label for="male">Male</label>
+                    <input id="female" type="radio" name="gender">
+                    <label for="female">Female</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" class="form-control">
+                    <option>Select a country</option>
+                    <optgroup label="Asia">
+                        <option>Vietnam</option>
+                        <option>Laos</option>
+                        <option>Cambodia</option>
+                        <option>Singapore</option>
+                    </optgroup>
+                    <optgroup label="Europe">
+                        <option>France</option>
+                        <option>Belgium</option>
+                        <option>Italy</option>
+                        <option>Finland</option>
+                        <option>Ireland</option>
+                    </optgroup>
+                </select>
+                <div class="input-error">Please select a country</div>
+            </div>
+            <div class="form-group">
+                <label for="toeic">TOEIC</label>
+                <input id="toeic" type="range" min="5" max="990" step="5">
+            </div>
+            <div class="form-group">
+                <button type="submit">Register</button>
+                <button type="reset">Reset</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
